@@ -1,0 +1,4 @@
+--require .
+--reporter dot
+--ui tdd
+

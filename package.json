@@ -1,0 +1,27 @@
+{
+  "name": "reverse",
+  "version": "0.0.1",
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "description": "match regex routes in reverse",
+  "scripts": {
+    "test": "mocha"
+  },
+  "main": "./index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisdickinson/reverse.js.git"
+  },
+  "keywords": [
+    "routes",
+    "reverse",
+    "urlpatterns"
+  ],
+  "devDependencies": {
+    "mocha" :  "0.x.x"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": "*"
+  }
+}
+
