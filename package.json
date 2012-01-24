@@ -17,7 +17,8 @@
     "urlpatterns"
   ],
   "devDependencies": {
-    "mocha" :  "0.x.x"
+    "mocha"     :  "0.x.x",
+    "express"   :  "2.x.x"
   },
   "license": "MIT",
   "engine": {

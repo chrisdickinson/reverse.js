@@ -15,14 +15,15 @@ function Route(route, idx) {
 }
 
 Route.parse = function(x) {
-  var src     = x.replace(/[\^\$]/g, '')
+  var src     = x.replace(/^\^/g, '').replace(/\$$/, '')
     , tokens  = []
     , re      = /\((.*?)\)/
     , match
+    , bit
     , groups  = 0
     , text    = function(str) {
         return function() {
-          return str.replace(/(\.|\*|\+|\\w|\\)/g, '')
+          return str.replace(/(\.|\*|\+|\?|\\w|\\)/g, '')
         }
       }
     , rex     = function(exp) {
@@ -61,9 +62,19 @@ Route.parse = function(x) {
       continue
     }
 
+    var parens = 0
+    for(var i = 0; i < src.length; ++i) {
+      if(i !== 0 && parens === 0) break
+
+      switch(src.charAt(i+match.index)) {
+        case '(': ++parens; break;
+        case ')': --parens; break;
+      }
+    }
+
     tokens.push(text(src.slice(0, match.index)))
-    tokens.push(rex(src.slice(match.index, match.index+match[0].length)))
-    src = src.slice(match.index + match[0].length)
+    tokens.push(rex(src.slice(match.index, match.index+i)))
+    src = src.slice(match.index + i)
   }
 
   return function(args, kwargs) {
